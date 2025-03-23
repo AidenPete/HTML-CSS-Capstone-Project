@@ -17,8 +17,9 @@
         <div class="text-red-400 text-2xl font-bold">AGIZA</div>
         <ul class="hidden md:flex space-x-4 text-white">
             <li><a href="#hero" class="hover:text-gray-400">Home</a></li>
-            <li><a href="#about" class="hover:text-gray-400">About</a></li>
-            <li><a href="#services" class="hover:text-gray-400">Services</a></li>
+            <li><a href="#menu" class="hover:text-gray-400">Menu</a></li>
+            <li><a href="#order" class="hover:text-gray-400">Order</a></li>
+            <li><a href="#checkout" class="hover:text-gray-400">Checkout</a></li>
             <li><a href="#contact" class="hover:text-gray-400">Contact</a></li>
         </ul>
     </nav>
@@ -28,13 +29,34 @@
         <div class="hero-content relative z-10 p-8">
             <h1 class="text-5xl font-extrabold">Welcome to AGIZA</h1>
             <p class="mt-4 text-lg">Your one-stop solution for restaurant ordering.</p>
-            <a href="#order" class="mt-6 inline-block bg-red-500 text-white py-3 px-6 rounded-lg hover:bg-red-700 shadow-lg">Place Order</a>
+            <a href="#menu" class="mt-6 inline-block bg-red-500 text-white py-3 px-6 rounded-lg hover:bg-red-700 shadow-lg">View Menu</a>
         </div>
     </header>
 
-    <!-- Order Form -->
-    <section id="order" class="p-8 bg-white max-w-lg mx-auto rounded-lg shadow-xl mt-12">
-        <h2 class="text-3xl font-semibold text-gray-800 mb-6">Place Your Order</h2>
+    <!-- Interactive Food Menu -->
+    <section id="menu" class="p-8 bg-gray-100 max-w-4xl mx-auto rounded-lg shadow-xl mt-12">
+        <h2 class="text-3xl font-semibold text-gray-800 mb-6">Our Menu</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 bg-gray-100">
+            <div class="p-4 border rounded-lg shadow-lg">
+                <img src="Assets/burger.jpg" alt="Burger" class="w-full h-40 object-cover rounded-lg mb-4">
+                <h3 class="text-xl font-semibold">Burger</h3>
+                <p class="text-gray-600">Delicious beef burger with fresh ingredients.</p>
+                <p class="text-red-500 font-bold">Ksh 1,100</p>
+                <button class="mt-2 bg-red-500 text-white py-2 px-4 rounded hover:bg-red-700">Add to Order</button>
+            </div>
+            <div class="p-4 border rounded-lg shadow-lg">
+                <img src="Assets/pizza.jpg" alt="Pizza" class="w-full h-40 object-cover rounded-lg mb-4">
+                <h3 class="text-xl font-semibold">Pizza</h3>
+                <p class="text-gray-600">Cheesy pizza with your favorite toppings.</p>
+                <p class="text-red-500 font-bold">ksh 1,500</p>
+                <button class="mt-2 bg-red-500 text-white py-2 px-4 rounded hover:bg-red-700">Add to Order</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Checkout Form -->
+    <section id="checkout" class="p-8 bg-white max-w-lg mx-auto rounded-lg shadow-xl mt-12">
+        <h2 class="text-3xl font-semibold text-gray-800 mb-6">Checkout</h2>
         <form class="space-y-4">
             <label class="block text-gray-700 font-medium">Choose Order Type:</label>
             <div class="flex space-x-4">
@@ -54,10 +76,16 @@
 
             <!-- Dine-In Fields -->
             <div id="dineInFields" class="hidden">
+                <label class="block text-gray-700 font-medium">Number of people:</label>
+                <input type="number" class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500" placeholder="Number of people">
                 <label class="block text-gray-700 font-medium">Table Number:</label>
-                <input type="text" class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500" placeholder="Enter table number">
-                <label class="block text-gray-700 font-medium">Number of People:</label>
-                <input type="number" class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500" placeholder="Enter number of people">
+                <input type="text" class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500" placeholder="table number">
+            </div>
+
+            <!-- Pickup Fields -->
+            <div id="pickupFields" class="hidden">
+                <label class="block text-gray-700 font-medium">Pickup Time:</label>
+                <input type="time" class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500">
             </div>
 
             <!-- Delivery Fields -->
@@ -66,7 +94,7 @@
                 <input type="text" class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500" placeholder="Enter delivery address">
             </div>
 
-            <button type="submit" class="w-full bg-red-500 text-white py-3 px-6 rounded-lg hover:bg-red-700 shadow-lg font-semibold">Submit Order</button>
+            <button type="submit" class="w-full bg-red-500 text-white py-3 px-6 rounded-lg hover:bg-red-700 shadow-lg font-semibold">Confirm Order</button>
         </form>
     </section>
 
@@ -74,15 +102,19 @@
         document.addEventListener('DOMContentLoaded', function () {
             const orderTypeRadios = document.querySelectorAll('input[name="orderType"]');
             const dineInFields = document.getElementById('dineInFields');
+            const pickupFields = document.getElementById('pickupFields');
             const deliveryFields = document.getElementById('deliveryFields');
 
             orderTypeRadios.forEach(radio => {
                 radio.addEventListener('change', function () {
                     dineInFields.classList.add('hidden');
+                    pickupFields.classList.add('hidden');
                     deliveryFields.classList.add('hidden');
                     
                     if (this.value === 'dine-in') {
                         dineInFields.classList.remove('hidden');
+                    } else if (this.value === 'pickup') {
+                        pickupFields.classList.remove('hidden');
                     } else if (this.value === 'delivery') {
                         deliveryFields.classList.remove('hidden');
                     }
@@ -90,40 +122,5 @@
             });
         });
     </script>
-    <footer class="bg-gray-900 text-white text-center py-8">
-        <div class="max-w-6xl mx-auto grid grid-cols-1 sm:grid-2 md:grid-cols-4 gap-8 ">
-            <!--about section-->
-            <div>
-                <h3 class="tex-lg font-semibold mb-2">About</h3>
-                <p class="text-gray-400">we are dedicated to providing top-notch services</p>
-            </div>
-            <!--Quick links-->
-            <div>
-                <h3 class="tex-lg font-semibold mb-2">Quick links</h3>
-                <ul class="space-y-2">
-                    <li><a href="#hero" class="text-gray-400 hover:text-white transition">Home</a></li>
-                    <li><a href="#About" class="text-gray-400 hover:text-white transition">About</a></li>
-                    <li><a href="#Services" class="text-gray-400 hover:text-white transition">services</a></li>
-                    <li><a href="#contact" class="text-gray-400 hover:text-white transition">contac</a></li>
-                </ul>
-            </div>
-            <!--Contact section-->
-            <div>
-                <h3 class="tex-lg font-semibold mb-2"> Contact</h3>
-                <p class="text-gray-400">Email: email@example.com</p>
-                <p class="text-gray-400">Phone: +254 792 387 244</p>
-            </div>
-            <div>
-                <!--Social icons-->
-                <h3 class="tex-lg font-semibold mb-2">Follow us</h3>
-                <div class="flex space-x-8 justify-center">
-                    <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-facebook"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-instagram"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-linkedin"></i></a>
-                </div>
-            </div>
-        </div>
-    </footer>
 </body>
 </html>
