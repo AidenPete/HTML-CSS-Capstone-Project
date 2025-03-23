@@ -13,11 +13,11 @@
 <body class="bg-gray-100 min-h-screen">
     
     <!-- Navbar -->
-    <nav class="bg-gray-800 p-4 flex justify-between items-center shadow-md">
+    <nav class="bg-gray-800 p-4 flex justify-between items-center shadow-md fixed top-0 w-full z-50">
         <div class="text-red-400 text-2xl font-bold">AGIZA</div>
         <ul class="hidden md:flex space-x-4 text-white">
             <li><a href="#hero" class="hover:text-gray-400">Home</a></li>
-            <li><a href="#menu" class="hover:text-gray-400">Menu</a></li>
+            <li><a href="#restaurantSelect" class="hover:text-gray-400">Restaurant</a></li>
             <li><a href="#order" class="hover:text-gray-400">Order</a></li>
             <li><a href="#checkout" class="hover:text-gray-400">Checkout</a></li>
             <li><a href="#contact" class="hover:text-gray-400">Contact</a></li>
@@ -29,13 +29,23 @@
         <div class="hero-content relative z-10 p-8">
             <h1 class="text-5xl font-extrabold">Welcome to AGIZA</h1>
             <p class="mt-4 text-lg">Your one-stop solution for restaurant ordering.</p>
-            <a href="#menu" class="mt-6 inline-block bg-red-500 text-white py-3 px-6 rounded-lg hover:bg-red-700 shadow-lg">View Menu</a>
+            <a href="#restaurantSelect" class="mt-6 inline-block bg-red-500 text-white py-3 px-6 rounded-lg hover:bg-red-700 shadow-lg">Select restaurant</a>
         </div>
     </header>
+     <!-- Restaurant Selection -->
+     <section class="p-8 bg-white max-w-lg mx-auto rounded-lg shadow-xl mt-12">
+        <h2 class="text-3xl font-semibold text-gray-800 mb-6">Select a Restaurant</h2>
+        <select id="restaurantSelect" class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500">
+            <option value="restaurant1">Restaurant 1</option>
+            <option value="restaurant2">Restaurant 2</option>
+            <option value="restaurant3">Restaurant 3</option>
+        </select>
+    </section>
+
 
     <!-- Interactive Food Menu -->
     <section id="menu" class="p-8 bg-gray-100 max-w-4xl mx-auto rounded-lg shadow-xl mt-12">
-        <h2 class="text-3xl font-semibold text-gray-800 mb-6">Our Menu</h2>
+        <h2 class="text-3xl font-semibold text-gray-800 mb-6">Menu</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 bg-gray-100">
             <div class="p-4 border rounded-lg shadow-lg">
                 <img src="Assets/burger.jpg" alt="Burger" class="w-full h-40 object-cover rounded-lg mb-4">
@@ -122,5 +132,16 @@
             });
         });
     </script>
+     <footer class="bg-gray-800 text-white text-center py-6 mt-12">
+        <p>&copy; 2025 AGIZA. All Rights Reserved.</p>
+        <div class="mt-4 flex justify-center space-x-4">
+            <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-facebook"></i></a>
+            <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-youtube"></i></a>
+        </div>
+    </footer>
+    </footer>
 </body>
+
 </html>
