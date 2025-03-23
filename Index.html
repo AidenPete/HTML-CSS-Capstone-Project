@@ -6,41 +6,73 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://kit.fontawesome.com/7efea5db52.js" crossorigin="anonymous"></script>
     <title>AGIZA</title>
-    <style>
+    <!--custom css for the select restaurant button-->
+        <style>
         .hidden { display: none; }
+        select#restaurantSelect {
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-color: #ef4444;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            text-align: center;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            border: none;
+        }
+        select#restaurantSelect:hover {
+            background-color: #dc2626;
+        }
+        
     </style>
+
 </head>
 <body class="bg-gray-100 min-h-screen">
     
     <!-- Navbar -->
     <nav class="bg-gray-800 p-4 flex justify-between items-center shadow-md fixed top-0 w-full z-50">
-        <div class="text-red-400 text-2xl font-bold">AGIZA</div>
+        <div class="text-red-500 text-4xl font-bold"><a href="#hero" class="hover:text-gray-400 text-1xl">AGIZA</a></div>
         <ul class="hidden md:flex space-x-4 text-white">
-            <li><a href="#hero" class="hover:text-gray-400">Home</a></li>
-            <li><a href="#restaurantSelect" class="hover:text-gray-400">Restaurant</a></li>
-            <li><a href="#order" class="hover:text-gray-400">Order</a></li>
-            <li><a href="#checkout" class="hover:text-gray-400">Checkout</a></li>
-            <li><a href="#contact" class="hover:text-gray-400">Contact</a></li>
+            <li><a href="#hero" class="hover:text-gray-400 text-1xl">Home</a></li>
+            <li><a href="#restaurantSelect" class="hover:text-gray-400 text-1xl">Restaurant</a></li>
+            <li><a href="#order" class="hover:text-gray-400 text-1xl">My Order</a></li>
+            <li><a href="about.html" class="hover:text-gray-400 text-1xl">About us</a></li>
+            <li><a href="Account" class="hover:text-gray-400 text-1xl">Account</a></li>
         </ul>
+        <!-- Account Icon -->
+    <div class="text-white text-2xl cursor-pointer">
+        <i class="fas fa-user-circle"></i>
+        <select class="signSignUp" style="appearance: none; -webkit-appearance: none; -moz-appearance: none; background-color: #ef4444; color: white; padding: 12px 24px; border-radius: 8px; font-size: 16px; font-weight: bold; cursor: pointer; text-align: center; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); border: none;">
+            <option value=" " disabled selected>Account</option>
+            <option value="LogIn">Log in</option>
+            <option value="SignUp">Sign Up</option>
+        </select>
+    </div>
     </nav>
 
     <!-- Hero Section -->
-    <header id="hero" class="relative h-screen flex items-center justify-center text-center bg-gray-900 text-white">
+    <header id="hero" class="relative h-screen flex items-center text-center bg-gray-900 text-white ">
         <div class="hero-content relative z-10 p-8">
             <h1 class="text-5xl font-extrabold">Welcome to AGIZA</h1>
             <p class="mt-4 text-lg">Your one-stop solution for restaurant ordering.</p>
-            <a href="#restaurantSelect" class="mt-6 inline-block bg-red-500 text-white py-3 px-6 rounded-lg hover:bg-red-700 shadow-lg">Select restaurant</a>
+            <!--<a href="#restaurantSelect" class="mt-6 inline-block bg-red-500 text-white py-3 px-6 rounded-lg hover:bg-red-700 shadow-lg">Select restaurant</a>-->
+          
+            <!-- Restaurant Selection -->
+            <div>
+            <select id="restaurantSelect" class="mt-6 inline-block bg-red-500 text-white py-3 px-6 rounded-lg hover:bg-red-700 shadow-lg justify-center">
+                <option value=""disabled selected>SELECT RESTAURANT</option>
+                <option value="restaurant1">JAVA</option>
+                <option value="restaurant2">ARTCAFE</option>
+                <option value="restaurant3">MUG & BEAN</option>
+            </select>
+            </div>
         </div>
+        
     </header>
-     <!-- Restaurant Selection -->
-     <section class="p-8 bg-white max-w-lg mx-auto rounded-lg shadow-xl mt-12">
-        <h2 class="text-3xl font-semibold text-gray-800 mb-6">Select a Restaurant</h2>
-        <select id="restaurantSelect" class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500">
-            <option value="restaurant1">Restaurant 1</option>
-            <option value="restaurant2">Restaurant 2</option>
-            <option value="restaurant3">Restaurant 3</option>
-        </select>
-    </section>
 
 
     <!-- Interactive Food Menu -->
@@ -141,7 +173,7 @@
             <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-youtube"></i></a>
         </div>
     </footer>
-    </footer>
+    
 </body>
 
 </html>
