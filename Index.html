@@ -36,12 +36,12 @@
     <!-- Navbar -->
     <nav class="bg-gray-800 p-4 flex justify-between items-center shadow-md fixed top-0 w-full z-50">
         <div class="text-red-500 text-4xl font-bold"><a href="#hero" class="hover:text-gray-400 text-1xl">AGIZA</a></div>
-        <ul class="hidden md:flex space-x-4 text-white">
-            <li><a href="#hero" class="hover:text-gray-400 text-1xl">Home</a></li>
-            <li><a href="#restaurantSelect" class="hover:text-gray-400 text-1xl">Restaurant</a></li>
-            <li><a href="#order" class="hover:text-gray-400 text-1xl">My Order</a></li>
-            <li><a href="about.html" class="hover:text-gray-400 text-1xl">About us</a></li>
-            <li><a href="Account" class="hover:text-gray-400 text-1xl">Account</a></li>
+        <ul class="hidden md:flex space-x-4 text-white ">
+            <li><a href="#hero" class="hover:text-gray-400 text-2xl">Home</a></li>
+            <li><a href="#restaurantSelect" class="hover:text-gray-400 text-2xl">Restaurant</a></li>
+            <li><a href="#order" class="hover:text-gray-400 text-2xl">My Order</a></li>
+            <li><a href="about.html" class="hover:text-gray-400 text-2xl">About us</a></li>
+            <li><a href="Account" class="hover:text-gray-400 text-2xl">Account</a></li>
         </ul>
         <!-- Account Icon -->
     <div class="text-white text-2xl cursor-pointer">
@@ -69,6 +69,14 @@
                 <option value="restaurant2">ARTCAFE</option>
                 <option value="restaurant3">MUG & BEAN</option>
             </select>
+            </div>
+        </div>
+        <!-- Image Slider Section -->
+        <div class="relative w-full max-w-lg mt-6 md:mt-0 md:ml-10 overflow-hidden rounded-lg shadow-lg ">
+            <div id="slider" class="flex transition-transform duration-500 ease-in-out w-full">
+                <img src="Assets/Artcaffe-Logo.png" class="w-full h-64 object-cover">
+                <img src="Assets/logo-java-house.svg" class="w-full h-64 object-cover">
+                <img src="Assets/muggandbean-logo-white.svg" class="w-full h-64 object-cover">
             </div>
         </div>
         
@@ -163,6 +171,15 @@
                 });
             });
         });
+        
+        let index = 0;
+        function showNextSlide() {
+            const slider = document.getElementById("slider");
+            index = (index + 1) % 3;
+            slider.style.transform = `translateX(-${index * 100}%)`;
+        }
+        setInterval(showNextSlide, 3000);
+    
     </script>
      <footer class="bg-gray-800 text-white text-center py-6 mt-12">
         <p>&copy; 2025 AGIZA. All Rights Reserved.</p>
