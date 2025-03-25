@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About AGIZA</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://kit.fontawesome.com/7efea5db52.js" crossorigin="anonymous"></script>
-    <title>About AGIZA</title>
 </head>
 <body class="bg-gray-100 min-h-screen">
     
@@ -17,6 +17,16 @@
             <li><a href="#about" class="hover:text-gray-400 text-1xl">About</a></li>
             <li><a href="#contact" class="hover:text-gray-400 text-1xl">Contact</a></li>
         </ul>
+        <div class="relative">
+            <button class="flex items-center text-white focus:outline-none" onclick="toggleDropdown()">
+                <i class="fas fa-user-circle text-2xl"></i>
+                <span class="ml-2">Account</span>
+            </button>
+            <div class="absolute right-0 mt-2 bg-white shadow-lg rounded-md hidden" id="accountDropdown">
+                <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Sign In</a>
+                <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Sign Out</a>
+            </div>
+        </div>
     </nav>
 
     <!-- About Section -->
@@ -29,17 +39,57 @@
             Our mission is to enhance the dining experience by integrating technology with restaurant services, providing convenience for both customers and restaurants. With real-time order tracking, secure payments, and personalized recommendations, Agiza ensures a smooth and delightful ordering experience.
         </p>
     </section>
+    <h2 class="text-2xl font-bold text-gray-800 text-center mt-8 mb-4">Who We Work With</h2>
+    
+    </div>
 
     <!-- Footer -->
-    <footer class="bg-gray-800 text-white text-center py-6">
-        <p>&copy; 2025 AGIZA. All Rights Reserved.</p>
-        <div class="mt-2 flex justify-center space-x-4">
-            <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-facebook"></i></a>
-            <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-twitter"></i></a>
-            <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-instagram"></i></a>
-            <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-youtube"></i></a>
+    <footer class="bg-gray-800 text-white py-8 fixed bottom-0 w-full">
+        <div class="footer-container max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10 px-4">
+            <!-- About Us Section -->
+            <div class="footer-column">
+                <h3 class="text-lg font-semibold mb-4"><a href="about.html" class="text-gray-400 hover:text-white">About Us</a></h3>
+                <p class="text-gray-400">We are dedicated to making your ordering easy.</p>
+            </div>
+            <!-- Quick Links Section -->
+            <div class="footer-column">
+                <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+                <ul class="space-y-2">
+                    <li><a href="#hero" class="text-gray-400 hover:text-white">Home</a></li>
+                    <li><a href="#restaurantSelect" class="text-gray-400 hover:text-white">Restaurant</a></li>
+                    <li><a href="#menu" class="text-gray-400 hover:text-white">Menu</a></li>
+                    <li><a href="#checkout" class="text-gray-400 hover:text-white">Checkout</a></li>
+                </ul>
+            </div>
+            <!-- Contact Section -->
+            <div class="footer-column">
+                <h3 class="text-lg font-semibold mb-4">Contact</h3>
+                <p class="text-gray-400">Email: contact@Agiza.com</p>
+                <p class="text-gray-400">Phone: +123 456 7890</p>
+            </div>
+            <!-- Social Media Links Section -->
+            <div class="footer-column">
+                <h3 class="text-lg font-semibold mb-4">Follow Us</h3>
+                <div class="social-links flex space-x-4">
+                    <a href="#" target="_blank" class="text-gray-400 hover:text-white text-2xl"><i class="fab fa-facebook"></i></a>
+                    <a href="#" target="_blank" class="text-gray-400 hover:text-white text-2xl"><i class="fab fa-twitter"></i></a>
+                    <a href="#" target="_blank" class="text-gray-400 hover:text-white text-2xl"><i class="fab fa-instagram"></i></a>
+                    <a href="#" target="_blank" class="text-gray-400 hover:text-white text-2xl"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
         </div>
+        <p class="footer-bottom text-center text-gray-400 mt-8">&copy; 2025 AGIZA. All Rights Reserved.</p>
     </footer>
 
+    <script>
+        function toggleDropdown() {
+            document.getElementById("accountDropdown").classList.toggle("hidden");
+        }
+        window.onclick = function(event) {
+            if (!event.target.closest(".relative")) {
+                document.getElementById("accountDropdown").classList.add("hidden");
+            }
+        }
+    </script>
 </body>
 </html>
