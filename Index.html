@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://kit.fontawesome.com/7efea5db52.js" crossorigin="anonymous"></script>
+    <script src="script.js"></script>
     <link rel="stylesheet" href="style.css">
     
     
@@ -39,61 +40,132 @@
     <!-- Navbar -->
     <nav class="bg-gray-800 p-4 flex justify-between items-center shadow-md fixed top-0 w-full z-50">
         <div class="text-red-500 text-4xl font-bold"><a href="#hero" class="hover:text-gray-400 text-1xl">AGIZA</a></div>
-        <ul class="hidden md:flex space-x-4 text-white ">
-            <li><a href="#hero" class="hover:text-gray-400 text-2xl">Home</a></li>
-            <li><a href="#restaurantSelect" class="hover:text-gray-400 text-2xl">Restaurant</a></li>
-            <li><a href="#order" class="hover:text-gray-400 text-2xl">My Order</a></li>
-            <li><a href="about.html" class="hover:text-gray-400 text-2xl">About us</a></li>
+        <ul class="hidden md:flex space-x-4 text-white">
+            <li><a href="order.html" class="hover:text-gray-400 text-1xl">My Order</a></li>
+            <li><a href="group-order.html" class="hover:text-gray-400 text-1xl">Group Order</a></li>
+            <li><a href="about.html" class="hover:text-gray-400 text-1xl">About us</a></li>
         </ul>
         </div>     
         <!-- Account Icon -->
          
         <div class="relative">
             <button class="flex items-center text-white focus:outline-none" onclick="toggleDropdown()">
-                <i class="fas fa-user-circle text-2xl"></i>
-                <span class="ml-2">Account</span>
+                <i class="fas fa-user-circle text-3xl "></i>
+                <span class="ml-2 text-2xl text-red-500">Account</span>
             </button>
             <div class="absolute right-0 mt-2 bg-white shadow-lg rounded-md hidden" id="accountDropdown">
-                <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Sign In</a>
-                <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Sign Out</a>
+                <!--<a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Sign In</a>-->
+                <a href="login.html" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Logout</a>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <header id="hero" class="relative h-screen flex items-center text-center bg-gray-900 text-white ">
-        <div class="hero-content relative z-10 p-8">
-            <h1 class="text-5xl font-extrabold">Welcome to AGIZA</h1>
-            <p class="mt-4 text-lg">Your one-stop solution for restaurant ordering.</p>
-            <!--<a href="#restaurantSelect" class="mt-6 inline-block bg-red-500 text-white py-3 px-6 rounded-lg hover:bg-red-700 shadow-lg">Select restaurant</a>-->
-          
-            <!-- Restaurant Selection -->
-            <div>
-                <input type="location" class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500" placeholder="Enter Location">
-            </div>
-            <div>
-            <select id="restaurantSelect" class="mt-6 inline-block bg-red-500 text-white py-3 px-6 rounded-lg hover:bg-red-700 shadow-lg justify-center">
-                <option value=""disabled selected>SELECT RESTAURANT</option>
-                <option value="restaurant1">JAVA</option>
-                <option value="restaurant2">ARTCAFE</option>
-                <option value="restaurant3">MUG & BEAN</option>
+  <!-- Hero Section -->
+<header id="hero" class="relative h-screen flex flex-col md:flex-row items-center text-center bg-gray-900 text-white overflow-hidden p-6">
+    <div class="hero-content relative z-10 p-8">
+        <h1 class="text-5xl font-extrabold">Welcome to AGIZA</h1>
+        <p class="mt-4 text-lg">Your one-stop solution for restaurant ordering.</p>
+
+        <!-- Search Bar -->
+        <div class="mt-6">
+            <input type="text" id="searchInput" class="w-full md:w-72 text-black p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500" placeholder="Search for restaurants..." oninput="filterRestaurants()">
+        </div>
+
+        <!-- Restaurant Select -->
+        <div class="mt-4">
+            <select id="restaurantSelect" class="bg-red-500 text-white py-3 px-6 rounded-lg hover:bg-red-700 shadow-lg">
+                <option value="" disabled selected>SELECT RESTAURANT</option>
+                <option value="JAVA">JAVA</option>
+                <option value="ARTCAFE">ARTCAFE</option>
+                <option value="MUG & BEAN">MUG & BEAN</option>
             </select>
-            </div>
         </div>
-        <!-- Image Slider Section -->
-        <div class="relative w-full max-w-lg mt-6 md:mt-0 md:ml-10 overflow-hidden rounded-lg shadow-lg ">
-            <div id="slider" class="flex transition-transform duration-500 ease-in-out w-full">
-                <img src="Assets/Artcaffe-Logo.png" class="w-full h-64 object-cover">
-                <img src="Assets/logo-java-house.svg" class="w-full h-64 object-cover">
-                <img src="Assets/muggandbean-logo-white.svg" class="w-full h-64 object-cover">
-            </div>
+    </div>
+
+    <!-- Food Image Slider -->
+    <div class="relative w-full max-w-lg mt-6 md:mt-0 md:ml-10 overflow-hidden rounded-lg shadow-lg">
+        <div id="foodSlider" class="flex transition-transform duration-500 ease-in-out">
+            <img src="Assets/2.png" class="w-full h-64 object-cover">
+            <img src="Assets/food png/rfood1.png" class="w-full h-64 object-cover">
+            <img src="Assets/food png/rfood2.png" class="w-full h-64 object-cover">
+            <img src="Assets/food png/rfood3.png" class="w-full h-64 object-cover">
+            <img src="Assets/food png/rfood4.png" class="w-full h-64 object-cover">
+           
         </div>
+    </div>
+</header>
+
+<!-- Featured Promotions -->
+<section class="mt-10 px-6">
+    <h2 class="text-3xl font-bold text-gray-900 text-center">🔥 Featured Promotions</h2>
+    <div class="flex gap-4 mt-6 overflow-x-auto no-scrollbar">
+        <div class="w-64 flex-shrink-0 bg-white rounded-lg shadow-lg p-4">
+            <img src="Assets/promo1.png" class="w-full h-40 object-cover rounded-lg">
+            <h3 class="text-lg font-bold mt-2">50% Off Burgers</h3>
+            <p class="text-gray-600 text-sm">Available at Java</p>
+        </div>
+        <div class="w-64 flex-shrink-0 bg-white rounded-lg shadow-lg p-4">
+            <img src="Assets/promo2.png" class="w-full h-40 object-cover rounded-lg">
+            <h3 class="text-lg font-bold mt-2">Free Coffee</h3>
+            <p class="text-gray-600 text-sm">On orders above $10</p>
+        </div>
+        <div class="w-64 flex-shrink-0 bg-white rounded-lg shadow-lg p-4">
+            <img src="Assets/promo3.png" class="w-full h-40 object-cover rounded-lg">
+            <h3 class="text-lg font-bold mt-2">Buy 1 Get 1 Free Pizza</h3>
+            <p class="text-gray-600 text-sm">Limited time offer</p>
+        </div>
+    </div>
+</section>
+
+<script>
+    // Image Slider
+    document.addEventListener("DOMContentLoaded", () => {
+        const slider = document.getElementById("foodSlider");
+        let index = 0;
+
+        function slideImages() {
+            index = (index + 1) % slider.children.length;
+            slider.style.transform = `translateX(-${index * 100}%)`;
+        }
+
+        setInterval(slideImages, 3000);
+    });
+
+    // Restaurant Search Feature
+    function filterRestaurants() {
+        let input = document.getElementById("searchInput").value.toUpperCase();
+        let select = document.getElementById("restaurantSelect");
         
-    </header>
+        for (let i = 0; i < select.options.length; i++) {
+            let option = select.options[i];
+            if (option.value.toUpperCase().includes(input)) {
+                option.hidden = false;
+            } else {
+                option.hidden = true;
+            }
+        }
+    }
+</script>
+
+<style>
+    @keyframes spin-slow {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+    .animate-spin-slow {
+        animation: spin-slow 10s linear infinite;
+    }
+    .no-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+</style>
+
+    
+    
 
 
     <!-- Interactive Food Menu -->
-    <section id="menu" class="p-8 bg-gray-100 max-w-4xl mx-auto rounded-lg shadow-xl mt-12">
+    <section id="menu" class="p-8 bg-gray-100 max-w-4xl mx-auto rounded-lg shadow-xl mt-12 text-left">
         <h2 class="text-3xl font-semibold text-gray-800 mb-6">Menu</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 bg-gray-100">
             <div class="p-4 border rounded-lg shadow-lg">
@@ -112,93 +184,91 @@
             </div>
         </div>
     </section>
-
-    <!-- Checkout Form -->
-    <section id="checkout" class="p-8 bg-white max-w-lg mx-auto rounded-lg shadow-xl mt-12 grid grid-cols 2">
-        <h2 class="text-3xl font-semibold text-gray-800 mb-6">Checkout</h2>
-        <form class="space-y-4">
-            <label class="block text-gray-700 font-medium">Choose Order Type:</label>
-            <div class="flex space-x-4">
-                <label class="flex items-center space-x-2">
-                    <input type="radio" name="orderType" value="dine-in" class="form-radio text-red-500">
-                    <span>Dine-In</span>
-                </label>
-                <label class="flex items-center space-x-2">
-                    <input type="radio" name="orderType" value="pickup" class="form-radio text-red-500">
-                    <span>Pickup</span>
-                </label>
-                <label class="flex items-center space-x-2">
-                    <input type="radio" name="orderType" value="delivery" class="form-radio text-red-500">
-                    <span>Delivery</span>
-                </label>
-            </div>
-
-            <!-- Dine-In Fields -->
-            <div id="dineInFields" class="hidden">
-                <label class="block text-gray-700 font-medium">Number of people:</label>
-                <input type="number" class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500" placeholder="Number of people">
-                <label class="block text-gray-700 font-medium">Table Number:</label>
-                <input type="text" class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500" placeholder="table number">
-            </div>
-
-            <!-- Pickup Fields -->
-            <div id="pickupFields" class="hidden">
-                <label class="block text-gray-700 font-medium">Pickup Time:</label>
-                <input type="time" class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500">
-            </div>
-
-            <!-- Delivery Fields -->
-            <div id="deliveryFields" class="hidden">
-                <label class="block text-gray-700 font-medium">Delivery Address:</label>
-                <input type="text" class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500" placeholder="Enter delivery address">
-            </div>
-
-            <button class="w-full bg-red-500 text-white py-3 px-6 rounded-lg hover:bg-red-700 shadow-lg font-semibold"><input type = "Submit" value="Confirm Order" onclick="onSubmit()"> </button>
-        </form>
+    <section id="menu-pdf" class="p-8 bg-white max-w-4xl mx-auto rounded-lg shadow-xl mt-12">
+        <h2 class="text-3xl font-semibold text-gray-800 mb-6">Full Menu</h2>
+        <div class="flex flex-col items-center">
+            <a href="Assets/Java-A4-FOOD-MASTER-Menu-2025-FA.pdf" download class="bg-red-500 text-white py-3 px-6 rounded-lg hover:bg-red-700 shadow-lg font-semibold mb-4">Download Menu PDF</a>
+            <iframe src="Assets/Java-A4-FOOD-MASTER-Menu-2025-FA.pdf" class="w-full h-[800px] border rounded-lg"></iframe>
+        </div>
     </section>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const orderTypeRadios = document.querySelectorAll('input[name="orderType"]');
-            const dineInFields = document.getElementById('dineInFields');
-            const pickupFields = document.getElementById('pickupFields');
-            const deliveryFields = document.getElementById('deliveryFields');
-
-            orderTypeRadios.forEach(radio => {
-                radio.addEventListener('change', function () {
-                    dineInFields.classList.add('hidden');
-                    pickupFields.classList.add('hidden');
-                    deliveryFields.classList.add('hidden');
-                    
-                    if (this.value === 'dine-in') {
-                        dineInFields.classList.remove('hidden');
-                    } else if (this.value === 'pickup') {
-                        pickupFields.classList.remove('hidden');
-                    } else if (this.value === 'delivery') {
-                        deliveryFields.classList.remove('hidden');
-                    }
-                });
-            });
-        });
+    
+    <section id="manual-order" class="p-8 bg-white max-w-4xl mx-auto rounded-lg shadow-xl mt-12">
+        <h2 class="text-3xl font-semibold text-gray-800 mb-6">Write Your Order</h2>
+        <textarea id="order-notes" class="w-full h-40 p-4 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500" placeholder="Write down your order details here..."></textarea>
+        <h3 class="text-xl font-semibold text-gray-800 mt-6">Choose Order Type:</h3>
+        <div class="flex space-x-4 mt-2">
+            <label class="flex items-center space-x-2">
+                <input type="radio" name="orderType" value="dine-in" class="form-radio text-red-500" onclick="toggleOrderFields('dine-in')">
+                <span>Dine-In</span>
+            </label>
+            <label class="flex items-center space-x-2">
+                <input type="radio" name="orderType" value="pickup" class="form-radio text-red-500" onclick="toggleOrderFields('pickup')">
+                <span>Pickup</span>
+            </label>
+            <label class="flex items-center space-x-2">
+                <input type="radio" name="orderType" value="delivery" class="form-radio text-red-500" onclick="toggleOrderFields('delivery')">
+                <span>Delivery</span>
+            </label>
+        </div>
         
-        let index = 0;
-        function showNextSlide() {
-            const slider = document.getElementById("slider");
-            index = (index + 1) % 3;
-            slider.style.transform = `translateX(-${index * 100}%)`;
-        }
-        setInterval(showNextSlide, 3000);
-
-        function toggleDropdown() {
-            document.getElementById("accountDropdown").classList.toggle("hidden");
-        }
-        window.onclick = function(event) {
-            if (!event.target.closest(".relative")) {
-                document.getElementById("accountDropdown").classList.add("hidden");
+        <div id="dine-in-fields" class="hidden mt-4">
+            <label class="block text-gray-700 font-medium">Number of people</label>
+            <input type="number" class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500" placeholder="Enter number of people">
+            <label class="block text-gray-700 font-medium">Table Number:</label>
+            <input type="text" class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500" placeholder="Automatic based of No Of people">
+            <label class="block text-gray-700 font-medium">Dine time:</label>
+            <input type="time" class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500" placeholder="pick dine time">
+        </div>
+        
+        <div id="pickup-fields" class="hidden mt-4">
+            <label class="block text-gray-700 font-medium">Pickup Time:</label>
+            <input type="time" class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500">
+        </div>
+        
+        <div id="delivery-fields" class="hidden mt-4">
+            <label class="block text-gray-700 font-medium">Delivery Address:</label>
+            <input type="text" class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500" placeholder="Enter delivery address">
+        </div>
+        <button class="w-full bg-red-500 text-white py-3 px-6 rounded-lg hover:bg-red-700 shadow-lg font-semibold"><input type = "Submit" value="Confirm Order" onclick="onSubmit()"> </button>
+    </section>
+    
+   
+    
+    <script>
+        function toggleOrderFields(orderType) {
+            document.getElementById('dine-in-fields').classList.add('hidden');
+            document.getElementById('pickup-fields').classList.add('hidden');
+            document.getElementById('delivery-fields').classList.add('hidden');
+            
+            if (orderType === 'dine-in') {
+                document.getElementById('dine-in-fields').classList.remove('hidden');
+            } else if (orderType === 'pickup') {
+                document.getElementById('pickup-fields').classList.remove('hidden');
+            } else if (orderType === 'delivery') {
+                document.getElementById('delivery-fields').classList.remove('hidden');
             }
         }
-
+    
+        function updateOrderSummary(items) {
+            let orderList = document.getElementById('ordered-items');
+            let totalPrice = document.getElementById('total-price');
+            let total = 0;
+            orderList.innerHTML = '';
+            items.forEach(item => {
+                let li = document.createElement('li');
+                li.textContent = `${item.name} - $${item.price.toFixed(2)}`;
+                orderList.appendChild(li);
+                total += item.price;
+            });
+            totalPrice.textContent = `$${total.toFixed(2)}`;
+        }
     </script>
+    
+    
+    
+    
+
+    
     <footer class="bg-gray-800 text-white py-8">
         <div class="footer-container max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 px-4">
             <!-- About Us Section -->

@@ -41,3 +41,6 @@
 .show {
     display: block;
 }
+.absolute img {
+    z-index: 10;
+}

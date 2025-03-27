@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="script.js"></script>
+    <title>Agiza - Login</title>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen relative">
+    <!-- Food Icon Decorations -->
+    <img src="Assets/food png.png" class="absolute top-10 left-10 w-16 opacity-75">
+    <img src="Assets/pizza.png" class="absolute bottom-10 right-10 w-20 opacity-75">
+    
+    <div class="bg-white p-8 rounded-lg shadow-lg max-w-md w-full relative z-10">
+        <h2 class="text-3xl font-bold text-center text-gray-800 mb-6">Login to Agiza</h2>
+        <form action="#" method="POST" class="space-y-4">
+            <div>
+                <label class="block text-gray-700 font-medium">Email</label>
+                <input type="email" class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500" placeholder="Enter your email">
+            </div>
+            <div>
+                <label class="block text-gray-700 font-medium">Password</label>
+                <input type="password" class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500" placeholder="Enter your password">
+            </div>
+            <a href="index.html" class="w-full block text-center bg-red-500 text-white py-3 px-6 rounded-lg hover:bg-red-700 font-semibold">
+                Login
+            </a>
+            
+        </form>
+        <p class="text-center text-gray-600 mt-4">Don't have an account? 
+            <a href="signup.html" class="text-red-500 font-bold hover:underline">Sign Up</a>
+        </p>
+    </div>
+</body>
+</html>

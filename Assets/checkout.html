@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - Agiza</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+        .agiza-red {
+            color: #e3342f;
+        }
+        .agiza-bg {
+            background-color: #f8f8f8;
+        }
+        .input-field {
+            @apply w-full p-3 border rounded-lg mt-2 focus:outline-none focus:ring-2 focus:ring-red-500 bg-white shadow-sm;
+        }
+    </style>
+</head>
+<body class="agiza-bg">
+
+    <!-- Navbar -->
+    <nav class="bg-gray-800 p-4 flex justify-between items-center shadow-md">
+        <div class="text-red-500 text-3xl font-bold">AGIZA</div>
+        <ul class="flex space-x-6 text-white">
+            <li><a href="index.html" class="hover:text-gray-400">Home</a></li>
+            <li><a href="menu.html" class="hover:text-gray-400">Menu</a></li>
+            <li><a href="orders.html" class="hover:text-gray-400">My Orders</a></li>
+            <li><a href="checkout.html" class="hover:text-gray-400 font-bold">Checkout</a></li>
+        </ul>
+    </nav>
+
+    <!-- Checkout Section -->
+    <section class="p-10 max-w-4xl mx-auto bg-white shadow-lg rounded-lg mt-10">
+        <h2 class="text-3xl font-bold text-center agiza-red">Checkout</h2>
+
+        <!-- Order Summary -->
+        <div class="mt-6 border-b pb-4">
+            <h3 class="text-xl font-semibold text-gray-800">Order Summary</h3>
+            <p class="mt-2 font-bold">Restaurant: <span id="restaurantName" class="agiza-red"></span></p>
+            <ul id="orderItems" class="list-disc pl-6 text-gray-700 mt-2"></ul>
+            <p class="mt-4 font-bold text-lg">Total: <span id="totalAmount" class="agiza-red">TBD</span></p>
+        </div>
+
+        <!-- Order Type Selection -->
+        <div class="mt-6">
+            <h3 class="text-xl font-semibold text-gray-800">Select Order Type</h3>
+            <select id="orderType" class="input-field">
+                <option value="dine-in">Dine-in</option>
+                <option value="pickup">Pick-up</option>
+                <option value="delivery">Delivery</option>
+            </select>
+        </div>
+
+        <!-- Delivery Details -->
+        <div id="deliveryDetails" class="mt-6 hidden">
+            <h3 class="text-xl font-semibold text-gray-800">Delivery Details</h3>
+            <label class="block mt-2 text-gray-700 font-medium">Enter Delivery Address:</label>
+            <input type="text" id="deliveryAddress" placeholder="Enter delivery location" class="input-field">
+        </div>
+
+        <!-- Manually Written Order -->
+        <div class="mt-6">
+            <h3 class="text-xl font-semibold text-gray-800">Enter Your Order</h3>
+            <textarea id="manualOrder" placeholder="Write your order here..." class="input-field h-28"></textarea>
+        </div>
+
+        <!-- Customer Information -->
+        <div class="mt-6">
+            <h3 class="text-xl font-semibold text-gray-800">Customer Information</h3>
+            <label class="block mt-2 text-gray-700 font-medium">Full Name:</label>
+            <input type="text" id="customerName" placeholder="Your Name" class="input-field">
+            
+            <label class="block mt-2 text-gray-700 font-medium">Phone Number:</label>
+            <input type="tel" id="customerPhone" placeholder="07XXXXXXXX" class="input-field">
+        </div>
+
+        <!-- Payment Section -->
+        <div class="mt-8">
+            <h3 class="text-xl font-semibold text-green-600">M-Pesa Payment</h3>
+            <button onclick="payWithMpesa()" class="mt-4 w-full bg-green-500 text-white py-3 rounded-lg hover:bg-green-700 font-bold">
+                Pay with M-Pesa
+            </button>
+        </div>
+
+        <!-- Payment Status -->
+        <div id="paymentStatus" class="mt-4 text-center text-lg font-semibold hidden"></div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white text-center p-6 mt-10">
+        <p class="text-lg font-semibold">Agiza - Your Food Ordering Solution</p>
+        <p class="mt-2 text-sm">&copy; 2025 Agiza. All rights reserved.</p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Retrieve Order Data
+        const orderData = JSON.parse(localStorage.getItem("orderData")) || {
+            restaurant: "Unknown",
+            items: [],
+            total: "TBD",
+        };
+
+        // Populate Order Summary
+        document.getElementById("restaurantName").textContent = orderData.restaurant;
+        document.getElementById("orderItems").innerHTML = orderData.items.map(item => `<li>${item}</li>`).join("");
+        document.getElementById("totalAmount").textContent = orderData.total;
+
+        // Show Delivery Details if "Delivery" is Selected
+        document.getElementById("orderType").addEventListener("change", function () {
+            if (this.value === "delivery") {
+                document.getElementById("deliveryDetails").classList.remove("hidden");
+            } else {
+                document.getElementById("deliveryDetails").classList.add("hidden");
+            }
+        });
+
+        // Simulated M-Pesa Payment Function
+        function payWithMpesa() {
+            const phone = document.getElementById("customerPhone").value;
+            const name = document.getElementById("customerName").value;
+            const orderType = document.getElementById("orderType").value;
+            const deliveryAddress = document.getElementById("deliveryAddress").value;
+            const manualOrder = document.getElementById("manualOrder").value;
+            const paymentStatus = document.getElementById("paymentStatus");
+
+            if (!name || !phone.match(/^07\d{8}$/)) {
+                alert("Please enter a valid name and M-Pesa number (07XXXXXXXX)");
+                return;
+            }
+
+            if (orderType === "delivery" && !deliveryAddress) {
+                alert("Please enter a delivery address.");
+                return;
+            }
+
+            if (!manualOrder.trim()) {
+                alert("Please enter your order details.");
+                return;
+            }
+
+            paymentStatus.textContent = "Processing payment...";
+            paymentStatus.classList.remove("hidden", "text-red-600", "text-green-600");
+            paymentStatus.classList.add("text-blue-500");
+
+            setTimeout(() => {
+                paymentStatus.textContent = "Payment Successful! Thank you.";
+                paymentStatus.classList.remove("text-blue-500");
+                paymentStatus.classList.add("text-green-600");
+
+                // Clear local storage order after successful payment
+                localStorage.removeItem("orderData");
+            }, 3000); // Simulated 3-second payment processing
+        }
+    </script>
+
+</body>
+</html>
